@@ -77,8 +77,7 @@ export async function POST(req: Request) {
     const model = openai("gpt-4o");
 
     const result = await streamText({
-      // @ts-ignore
-      model: model,
+      model: model as any,
       system: `Translate the following text from ${fromLanguage} to ${toLanguage}. If "Auto" is the from language, then try to detect the original language automatically after reading the text. Return directly the translated text. Do not include the prompt in the response.`,
       prompt: textToTranslate.toString(),
       temperature: 0.7,
