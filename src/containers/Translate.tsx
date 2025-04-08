@@ -13,11 +13,11 @@ export const Translate = () => {
   const { toolBeltType } = useContext(toolBeltContext);
 
   return (
-    <main className="container px-3 mb-10 max-w-[1000px]">
+    <main className="container px-3 mb-10 max-w-[1000px] animate-fade-in opacity-0" style={{ animationDelay: "100ms", animationFillMode: "forwards" }}>
       <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-6 mb-6">
-        <h1 className="text-3xl font-bold tracking-tight mb-4 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Translation Hub</h1>
-        <p className="text-muted-foreground text-center mb-6">Translate text, images, and documents across multiple languages</p>
-        <ToolBelt />
+        <div className="mb-6">
+          <ToolBelt />
+        </div>
 
         <LanguagePicker />
 
