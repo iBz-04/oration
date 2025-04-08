@@ -69,23 +69,34 @@ export async function POST(req: Request) {
     );
   }
 
-  // Service for the translation
-  const openai = createOpenAI({
-    compatibility: "strict",
-    apiKey,
-  });
-
-  const model = openai("gpt-4o");
-
   try {
-    const result = await streamText({
-      model,
-      system: `Translate the following text from ${fromLanguage} to ${toLanguage}. If "Auto" is the from language, then try to detect the original language automatically after reading the text. Return directly the translated text. Do not include the prompt in the response.`,
-      prompt: textToTranslate.toString(),
+    const openai = createOpenAI({
+      apiKey,
+    });
+
+    const response = await openai.chat({
+      model: "gpt-4o",
+      stream: true,
+      messages: [
+        {
+          role: "system",
+          content: `Translate the following text from ${fromLanguage} to ${toLanguage}. If "Auto" is the from language, then try to detect the original language automatically after reading the text. Return directly the translated text. Do not include the prompt in the response.`
+        },
+        {
+          role: "user",
+          content: textToTranslate.toString()
+        }
+      ],
       temperature: 0.7,
     });
 
-    return result.toAIStreamResponse();
+    return new Response(response.body, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        'Connection': 'keep-alive',
+      },
+    });
   } catch (error) {
     return Response.json(
       {
