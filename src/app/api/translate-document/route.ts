@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createOpenAI } from "@ai-sdk/openai";
-import { StreamingTextResponse } from "ai";
+import { streamText } from "ai";
 import pdf from "pdf-parse";
 
 import { validPrefixes } from "@/lib/constants";
@@ -75,23 +75,15 @@ export async function POST(req: Request) {
     });
 
     const model = openai("gpt-4o");
-    
-    const response = await model.chat.completions.create({
-      messages: [
-        {
-          role: "system",
-          content: `Translate the following text from ${fromLanguage} to ${toLanguage}. If "Auto" is the from language, then try to detect the original language automatically after reading the text. Return directly the translated text. Do not include the prompt in the response.`
-        },
-        {
-          role: "user",
-          content: textToTranslate.toString()
-        }
-      ],
+
+    const result = await streamText({
+      model: model,
+      system: `Translate the following text from ${fromLanguage} to ${toLanguage}. If "Auto" is the from language, then try to detect the original language automatically after reading the text. Return directly the translated text. Do not include the prompt in the response.`,
+      prompt: textToTranslate.toString(),
       temperature: 0.7,
-      stream: true
     });
 
-    return new StreamingTextResponse(response.toReadableStream());
+    return result.toAIStreamResponse();
   } catch (error) {
     return Response.json(
       {
