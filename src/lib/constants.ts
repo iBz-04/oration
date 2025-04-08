@@ -26,16 +26,17 @@ interface Language {
 
 export const languages: Language[] = [
   { value: "Spanish", label: "Spanish", lang: "es-ES", query: "es" },
+  { value: "Turkish", label: "Turkish", lang: "tr-TR", query: "tr" },
   { value: "English", label: "English", lang: "en-US", query: "en" },
   { value: "German", label: "German", lang: "de-DE", query: "de" },
   { value: "Arabic", label: "Arabic", lang: "ar-SA", query: "ar" },
-  { value: "Bengali", label: "Bengali", lang: "bn-IN", query: "bn" },
   { value: "French", label: "French", lang: "fr-FR", query: "fr" },
   { value: "Hindi", label: "Hindi", lang: "hi-IN", query: "hi" },
   { value: "Japanese", label: "Japanese", lang: "ja-JP", query: "ja" },
   { value: "Mandarin", label: "Mandarin", lang: "zh-CN", query: "zh" },
   { value: "Portuguese", label: "Portuguese", lang: "pt-BR", query: "pt" },
   { value: "Russian", label: "Russian", lang: "ru-RU", query: "ru" },
+  
 ];
 
 export const querylanguages: string[] = languages.map(({ query }) => query);

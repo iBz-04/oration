@@ -52,10 +52,10 @@ You will need:
 - [Node.js 20+ (recommended 20.14 LTS)](https://nodejs.org/en/).
 - [Git](https://git-scm.com/).
 
-1. [Clone](https://github.com/developaul/translate-app.git) this repository locally:
+1. [Clone](https://github.com/iBz-04/oration.git) this repository locally:
 
 ```bash
-git clone git@github.com:developaul/translate-app.git
+git clone git@github.com:iBz-04/oration.git
 ```
 
 2. Install dependencies:
