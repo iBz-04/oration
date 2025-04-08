@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText } from "ai";
+import { StreamingTextResponse } from "ai";
 import pdf from "pdf-parse";
 
 import { validPrefixes } from "@/lib/constants";
@@ -74,9 +74,9 @@ export async function POST(req: Request) {
       apiKey,
     });
 
-    const response = await openai.chat({
-      model: "gpt-4o",
-      stream: true,
+    const model = openai("gpt-4o");
+    
+    const response = await model.chat.completions.create({
       messages: [
         {
           role: "system",
@@ -88,15 +88,10 @@ export async function POST(req: Request) {
         }
       ],
       temperature: 0.7,
+      stream: true
     });
 
-    return new Response(response.body, {
-      headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-      },
-    });
+    return new StreamingTextResponse(response.toReadableStream());
   } catch (error) {
     return Response.json(
       {
