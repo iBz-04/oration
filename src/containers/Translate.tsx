@@ -5,6 +5,7 @@ import {
   TextareaGroup,
   ImageGroup,
   DocumentGroup,
+  EyesFollowMouse,
 } from "@/components";
 import { ToolBeltType } from "@/lib/constants";
 import { toolBeltContext } from "@/providers";
@@ -14,7 +15,9 @@ export const Translate = () => {
 
   return (
     <main className="container px-3 mb-10 max-w-[1000px] animate-fade-in opacity-0" style={{ animationDelay: "100ms", animationFillMode: "forwards" }}>
-      <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-6 mb-6">
+      <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-6 mb-6 relative">
+        <EyesFollowMouse />
+        
         <div className="mb-6">
           <ToolBelt />
         </div>
