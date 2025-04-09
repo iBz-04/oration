@@ -63,7 +63,7 @@ export const SetupDialog = () => {
                 className="underline font-bold"
                 target="_blank"
                 rel="noreferrer"
-                href="https://github.com/iBz-04/translate-app"
+                href="https://github.com/iBz-04/oration"
               >
                 open-source code
               </a>
