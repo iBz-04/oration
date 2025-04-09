@@ -3,7 +3,7 @@ import { NextPage } from "next";
 
 import { Header, Translate } from "@/containers";
 import { useSetSearchParams } from "@/hooks";
-import { SetupDialog } from "@/components";
+import { SetupDialog, FlashCards } from "@/components";
 
 const Features = () => {
   return (
@@ -204,6 +204,7 @@ const HomePage: NextPage = () => {
     <>
       <Header />
       <Translate />
+      <FlashCards />
       <Features />
       <HowToUse />
       <Footer />

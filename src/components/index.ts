@@ -2,6 +2,7 @@ export * from "./DocumentDropzoneBox";
 export * from "./DocumentGroup";
 export * from "./Dropzone";
 export * from "./EyesFollowMouse";
+export * from "./FlashCards";
 export * from "./ImageDropzoneBox";
 export * from "./ImageGroup";
 export * from "./LanguagePicker";
