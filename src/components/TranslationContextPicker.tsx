@@ -20,49 +20,41 @@ export const TranslationContextPicker = () => {
   ) || translationContexts[0];
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-4 mb-6">
-      <div className="text-sm text-muted-foreground flex items-center gap-1 mb-2 sm:mb-0">
-        Translation tone:
-        <Tooltip delayDuration={DEFAULT_TOOLTIP_DELAY_DURATION}>
-          <TooltipTrigger asChild>
-            <InfoCircledIcon className="h-4 w-4 opacity-70" />
-          </TooltipTrigger>
-          <TooltipContent className="max-w-xs">
-            Select the tone or context for the translation to improve accuracy.
-          </TooltipContent>
-        </Tooltip>
+    <div className="bg-muted/30 p-4 rounded-lg mb-6 animate-slide-up">
+      <div className="flex items-center mb-2">
+        <label className="text-sm font-medium text-muted-foreground flex items-center gap-1.5">
+          Translation tone
+          <Tooltip delayDuration={DEFAULT_TOOLTIP_DELAY_DURATION}>
+            <TooltipTrigger asChild>
+              <InfoCircledIcon className="h-4 w-4 opacity-70 cursor-help" />
+            </TooltipTrigger>
+            <TooltipContent className="max-w-xs">
+              Select the tone or context for the translation to improve accuracy and appropriateness.
+            </TooltipContent>
+          </Tooltip>
+        </label>
       </div>
       
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button 
-            variant="outline" 
-            size="sm" 
-            className="w-full sm:w-auto sm:ml-auto"
+      <div className="flex flex-wrap gap-2">
+        {translationContexts.map((ctx) => (
+          <Button
+            key={ctx.value}
+            variant={ctx.value === translationContext ? "secondary" : "outline"}
+            size="sm"
+            className={`
+              relative px-3 py-2 transition-all
+              ${ctx.value === translationContext ? 'shadow-sm' : 'opacity-80 hover:opacity-100'}
+            `}
+            onClick={() => handleChangeTranslationContext(ctx.value)}
           >
-            {currentContext.label}
+            {ctx.label}
           </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-[300px] p-1" align="end" sideOffset={5}>
-          <div className="space-y-1">
-            {translationContexts.map((ctx) => (
-              <Button
-                key={ctx.value}
-                variant={ctx.value === translationContext ? "secondary" : "ghost"}
-                className="w-full justify-start text-left px-2 py-1.5 h-auto"
-                onClick={() => handleChangeTranslationContext(ctx.value)}
-              >
-                <div className="w-full overflow-hidden">
-                  <div className="font-medium truncate">{ctx.label}</div>
-                  <div className="text-xs text-muted-foreground truncate">
-                    {ctx.description}
-                  </div>
-                </div>
-              </Button>
-            ))}
-          </div>
-        </PopoverContent>
-      </Popover>
+        ))}
+      </div>
+      
+      <p className="text-xs text-muted-foreground mt-2">
+        {currentContext.description}
+      </p>
     </div>
   );
 }; 

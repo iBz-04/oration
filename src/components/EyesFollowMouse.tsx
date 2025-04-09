@@ -45,7 +45,7 @@ export const EyesFollowMouse = () => {
   useEffect(() => {
     // Calculate the position of the pupils based on mouse position
     // with slightly different behavior for each eye for a more natural look
-    const maxMovement = 10;
+    const maxMovement = 8;
     const angle = Math.atan2(mousePosition.y, mousePosition.x);
     const distance = Math.min(
       Math.sqrt(mousePosition.x ** 2 + mousePosition.y ** 2),
@@ -67,32 +67,34 @@ export const EyesFollowMouse = () => {
   return (
     <div 
       ref={eyesContainerRef}
-      className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-6 z-10"
+      className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-4 z-10"
       aria-hidden="true"
     >
-      {/* Left eye */}
-      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div 
-          className={`w-7 h-7 bg-blue-600 rounded-full relative ${isBlinking ? 'h-[2px] mt-1' : ''}`}
-          style={{
-            transform: isBlinking ? 'none' : `translate(${eyePositions[0].x}px, ${eyePositions[0].y}px)`,
-            transition: "transform 0.1s ease-out",
-          }}
-        >
-          {!isBlinking && <div className="w-2 h-2 bg-white rounded-full absolute top-1 left-1"></div>}
+      <div className="bg-white/90 dark:bg-gray-800/90 py-1.5 px-3 rounded-full shadow-lg flex items-center gap-4 border border-gray-100 dark:border-gray-700">
+        {/* Left eye */}
+        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-600 overflow-hidden">
+          <div 
+            className={`w-6 h-6 bg-blue-500 rounded-full relative ${isBlinking ? 'h-[2px] mt-1' : ''}`}
+            style={{
+              transform: isBlinking ? 'none' : `translate(${eyePositions[0].x}px, ${eyePositions[0].y}px)`,
+              transition: "transform 0.15s ease-out",
+            }}
+          >
+            {!isBlinking && <div className="w-2 h-2 bg-white rounded-full absolute top-1 left-1"></div>}
+          </div>
         </div>
-      </div>
-      
-      {/* Right eye */}
-      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-gray-200 dark:border-gray-700 overflow-hidden">
-        <div 
-          className={`w-7 h-7 bg-blue-600 rounded-full relative ${isBlinking ? 'h-[2px] mt-1' : ''}`}
-          style={{
-            transform: isBlinking ? 'none' : `translate(${eyePositions[1].x}px, ${eyePositions[1].y}px)`,
-            transition: "transform 0.1s ease-out",
-          }}
-        >
-          {!isBlinking && <div className="w-2 h-2 bg-white rounded-full absolute top-1 left-1"></div>}
+        
+        {/* Right eye */}
+        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-200 dark:border-gray-600 overflow-hidden">
+          <div 
+            className={`w-6 h-6 bg-blue-500 rounded-full relative ${isBlinking ? 'h-[2px] mt-1' : ''}`}
+            style={{
+              transform: isBlinking ? 'none' : `translate(${eyePositions[1].x}px, ${eyePositions[1].y}px)`,
+              transition: "transform 0.15s ease-out",
+            }}
+          >
+            {!isBlinking && <div className="w-2 h-2 bg-white rounded-full absolute top-1 left-1"></div>}
+          </div>
         </div>
       </div>
     </div>

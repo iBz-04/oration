@@ -19,19 +19,21 @@ export const Translate = () => {
       <div className="bg-card text-card-foreground rounded-lg border shadow-sm p-6 mb-6 relative">
         <EyesFollowMouse />
         
-        <div className="mb-6">
+        <div className="mb-8 flex justify-center">
           <ToolBelt />
         </div>
 
-        <LanguagePicker />
-        
-        <TranslationContextPicker />
+        <div className="space-y-6">
+          <LanguagePicker />
+          
+          <TranslationContextPicker />
 
-        {toolBeltType === ToolBeltType.TEXT && <TextareaGroup />}
-
-        {toolBeltType === ToolBeltType.IMAGE && <ImageGroup />}
-
-        {toolBeltType === ToolBeltType.DOCUMENT && <DocumentGroup />}
+          <div className="pt-2">
+            {toolBeltType === ToolBeltType.TEXT && <TextareaGroup />}
+            {toolBeltType === ToolBeltType.IMAGE && <ImageGroup />}
+            {toolBeltType === ToolBeltType.DOCUMENT && <DocumentGroup />}
+          </div>
+        </div>
       </div>
     </main>
   );
