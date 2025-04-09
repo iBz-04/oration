@@ -6,6 +6,7 @@ import {
   ImageGroup,
   DocumentGroup,
   EyesFollowMouse,
+  TranslationContextPicker,
 } from "@/components";
 import { ToolBeltType } from "@/lib/constants";
 import { toolBeltContext } from "@/providers";
@@ -23,6 +24,8 @@ export const Translate = () => {
         </div>
 
         <LanguagePicker />
+        
+        <TranslationContextPicker />
 
         {toolBeltType === ToolBeltType.TEXT && <TextareaGroup />}
 

@@ -10,5 +10,6 @@ export * from "./TextareaGroup";
 export * from "./ThemeToggle";
 export * from "./ToolBelt";
 export * from "./TranslationBox";
+export * from "./TranslationContextPicker";
 export * from "./TranslationSourceActions";
 export * from "./TranslationTargetActions";

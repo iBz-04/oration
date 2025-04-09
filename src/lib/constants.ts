@@ -82,9 +82,46 @@ export const enum SearchParams {
   TO_LANGUAGE = "tl",
   OPTION = "op",
   TEXT = "text",
+  CONTEXT = "ctx"
 }
 
 export const validPrefixes = [
   "data:application/pdf;base64,",
   "data:@file/pdf;base64,",
+];
+
+export interface TranslationContext {
+  value: string;
+  label: string;
+  description: string;
+}
+
+export const DEFAULT_TRANSLATION_CONTEXT = "neutral";
+
+export const translationContexts: TranslationContext[] = [
+  { 
+    value: "neutral", 
+    label: "Neutral", 
+    description: "Standard translation without specific tone or context" 
+  },
+  { 
+    value: "formal", 
+    label: "Formal", 
+    description: "Business or official settings, using formal language and honorifics" 
+  },
+  { 
+    value: "casual", 
+    label: "Casual", 
+    description: "Friendly, everyday conversation between peers" 
+  },
+  { 
+    value: "academic", 
+    label: "Academic", 
+    description: "Scholarly or scientific context with domain-specific terminology" 
+  },
+  { 
+    value: "literary", 
+    label: "Literary", 
+    description: "Artistic and expressive language appropriate for creative works" 
+  }
 ];

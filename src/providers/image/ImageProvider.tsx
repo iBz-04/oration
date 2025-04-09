@@ -8,6 +8,7 @@ import { languageContext } from "../language";
 import { fileToBase64 } from "@/lib/utils";
 import { errorContext } from "../error";
 import { setupContext } from "../setup";
+import { translationContextContext } from "../translationContext";
 
 export const ImageProvider: FC<PropsWithChildren> = ({ children }) => {
   const [file, setFile] = useState<File | null>(null);
@@ -15,7 +16,7 @@ export const ImageProvider: FC<PropsWithChildren> = ({ children }) => {
   const { handleShowMessageError } = useContext(errorContext);
 
   const { fromLanguage, toLanguage } = useContext(languageContext);
-
+  const { translationContext } = useContext(translationContextContext);
   const { apiKey } = useContext(setupContext);
 
   const { completion, complete, isLoading, setCompletion, error } =
@@ -35,12 +36,14 @@ export const ImageProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     async function run() {
       if (file === null) return;
+
       const image = await fileToBase64(file);
-      complete("", { body: { fromLanguage, toLanguage, image, apiKey } });
+
+      complete("", { body: { fromLanguage, toLanguage, image, apiKey, translationContext } });
     }
 
     run();
-  }, [complete, file, fromLanguage, toLanguage, apiKey]);
+  }, [complete, file, fromLanguage, toLanguage, apiKey, translationContext]);
 
   useEffect(() => {
     if (!error) return;
