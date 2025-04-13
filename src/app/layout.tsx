@@ -24,12 +24,12 @@ import { SetupProvider } from "@/providers/setup";
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Translate App",
+  title: "Oration",
   description:
     "Translate your text, images, and documents in multiple languages",
   keywords:
     "translate, translator, translation, text, image, document, pdf, ai, openai, gpt, chatgpt, vercel, nextjs, tailwindcss, shadcn, radix, react, typescript, bun, pdf-parse",
-  metadataBase: new URL("https://talk-translate.vercel.app"),
+  metadataBase: new URL("https://oration.vercel.app/"),
 };
 
 export default function RootLayout({
