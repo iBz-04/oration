@@ -18,7 +18,7 @@ export const EyesFollowMouse = () => {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    // Update mouse position relative to the center of the eyes container
+  
     setMousePosition({
       x: e.clientX - centerX,
       y: e.clientY - centerY,
@@ -32,19 +32,17 @@ export const EyesFollowMouse = () => {
     };
   }, []);
 
-  // Set up random blinking
+ 
   useEffect(() => {
     const blinkInterval = setInterval(() => {
       setIsBlinking(true);
       setTimeout(() => setIsBlinking(false), 200);
-    }, Math.random() * 3000 + 2000); // Random interval between 2-5 seconds
+    }, Math.random() * 3000 + 2000); 
 
     return () => clearInterval(blinkInterval);
   }, []);
 
   useEffect(() => {
-    // Calculate the position of the pupils based on mouse position
-    // with slightly different behavior for each eye for a more natural look
     const maxMovement = 8;
     const angle = Math.atan2(mousePosition.y, mousePosition.x);
     const distance = Math.min(
@@ -53,14 +51,14 @@ export const EyesFollowMouse = () => {
     );
     const normalizedDistance = Math.min(distance / 50, 1) * maxMovement;
     
-    // Base movement for both eyes
+
     const baseX = Math.cos(angle) * normalizedDistance;
     const baseY = Math.sin(angle) * normalizedDistance;
     
-    // Slightly different behavior for each eye
+ 
     setEyePositions([
-      { x: baseX * 0.95, y: baseY }, // Left eye
-      { x: baseX * 1.05, y: baseY }, // Right eye - slight variation
+      { x: baseX * 0.95, y: baseY }, 
+      { x: baseX * 1.05, y: baseY }, 
     ]);
   }, [mousePosition]);
 
